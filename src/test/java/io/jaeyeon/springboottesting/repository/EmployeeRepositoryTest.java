@@ -1,9 +1,10 @@
 package io.jaeyeon.springboottesting.repository;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.List;
 import java.util.Optional;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,8 +40,8 @@ class EmployeeRepositoryTest {
 		Employee savedEmployee = employeeRepository.save(employee);
 
 		// then - verify the output
-		Assertions.assertThat(savedEmployee).isNotNull();
-		Assertions.assertThat(savedEmployee.getId()).isGreaterThan(0);
+		assertThat(savedEmployee).isNotNull();
+		assertThat(savedEmployee.getId()).isGreaterThan(0);
 	}
 
 	@Test
@@ -60,8 +61,8 @@ class EmployeeRepositoryTest {
 		List<Employee> employeeList = employeeRepository.findAll();
 
 		// then - verify the output
-		Assertions.assertThat(employeeList).isNotNull();
-		Assertions.assertThat(employeeList.size()).isEqualTo(2);
+		assertThat(employeeList).isNotNull();
+		assertThat(employeeList.size()).isEqualTo(2);
 	}
 	
 	@Test
@@ -74,7 +75,7 @@ class EmployeeRepositoryTest {
 		Employee employeeDB = employeeRepository.findById(employee.getId()).get();
 
 		// then - verify the output
-		Assertions.assertThat(employeeDB).isNotNull();
+		assertThat(employeeDB).isNotNull();
 	}
 
 	@Test
@@ -87,7 +88,7 @@ class EmployeeRepositoryTest {
 		Employee employeeDB = employeeRepository.findByEmail(employee.getEmail()).get();
 
 		// then - verify the output
-		Assertions.assertThat(employeeDB).isNotNull();
+		assertThat(employeeDB).isNotNull();
 	}
 
 	@Test
@@ -107,8 +108,8 @@ class EmployeeRepositoryTest {
 		Employee updatedEmployee = employeeRepository.save(newEmployee);
 
 		// then - verify the output
-		Assertions.assertThat(updatedEmployee.getEmail()).isEqualTo("cjyeon1022@google.com");
-		Assertions.assertThat(updatedEmployee.getFirstName()).isEqualTo("Test");
+		assertThat(updatedEmployee.getEmail()).isEqualTo("cjyeon1022@google.com");
+		assertThat(updatedEmployee.getFirstName()).isEqualTo("Test");
 
 	}
 
@@ -123,7 +124,7 @@ class EmployeeRepositoryTest {
 		Optional<Employee> employeeOptional = employeeRepository.findById(employee.getId());
 
 		// then - verify the output
-		Assertions.assertThat(employeeOptional).isEmpty();
+		assertThat(employeeOptional).isEmpty();
 	}
 
 	@Test
@@ -138,6 +139,6 @@ class EmployeeRepositoryTest {
 		Employee savedEmployee = employeeRepository.findByJPQL(firstName, lastName);
 
 		// then - verify the output
-		Assertions.assertThat(savedEmployee).isNotNull();
+		assertThat(savedEmployee).isNotNull();
 	}
 }
